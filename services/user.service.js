@@ -6,37 +6,43 @@ import { generateVerificationCode } from "../utils/codeGenerator.js"; // New imp
 const UserService = {
   register: async (userData) => {
     try {
-      // Check if email already exists
-      const existingUser = await User.findOne({ email: userData.email }).maxTimeMS(10000); // Set a max time for the query
+      console.log('Registering user with data:', userData);
+
+      const existingUser = await User.findOne({ email: userData.email }).maxTimeMS(10000);
       if (existingUser) {
         throw new Error("Email already in use");
       }
 
-      const lastUser = await User.findOne().sort({ uniqueId: -1 }).maxTimeMS(10000); // Set a max time for the query
+      const lastUser = await User.findOne().sort({ uniqueId: -1 }).maxTimeMS(10000);
+      console.log('Last user found:', lastUser);
       const uniqueId = lastUser
         ? (parseInt(lastUser.uniqueId) + 1).toString().padStart(4, "0")
         : "1001";
 
-      const verificationCode = generateVerificationCode(); // Generate 4-digit code
-
-      console.log(verificationCode);
+      const verificationCode = generateVerificationCode();
+      console.log('Generated verification code:', verificationCode);
 
       const user = new User({ ...userData, uniqueId });
       await user.save();
       const token = generateToken(user);
 
-      sendWelcomeEmail(user.name, user.email, user.role, verificationCode); // Send role-based email with code
+      sendWelcomeEmail(user.name, user.email, user.role, verificationCode);
 
-      return { user, token, verificationCode }; 
+      return { user, token, verificationCode };
     } catch (error) {
       console.error("Error during registration:", error);
+      if (error.code === 11000) {
+        throw new Error("Duplicate key error: " + JSON.stringify(error.keyValue));
+      }
       throw new Error("Registration failed");
     }
   },
 
   login: async (userData) => {
     try {
-      const user = await User.findOne({ email: userData.email }).maxTimeMS(10000); // Set a max time for the query
+      console.log('Logging in user with data:', userData);
+
+      const user = await User.findOne({ email: userData.email }).maxTimeMS(10000);
       if (!user || !(await user.comparePassword(userData.password))) {
         throw new Error("Invalid credentials");
       }
@@ -50,10 +56,12 @@ const UserService = {
 
   getUsers: async () => {
     try {
+      console.log('Fetching users');
+
       const users = await User.find(
-        { role: { $ne: 'admin' } }, 
-        { password: 0 } // Projection to exclude the password field
-      ).maxTimeMS(10000); // Set a max time for the query
+        { role: { $ne: 'admin' } },
+        { password: 0 }
+      ).maxTimeMS(10000);
 
       return users;
     } catch (error) {
