@@ -8,12 +8,12 @@ const UserService = {
     try {
       console.log('Registering user with data:', userData);
 
-      const existingUser = await User.findOne({ email: userData.email }).maxTimeMS(10000);
+      const existingUser = await User.findOne({ email: userData.email }).maxTimeMS(20000).lean().exec();;
       if (existingUser) {
         throw new Error("Email already in use");
       }
 
-      const lastUser = await User.findOne().sort({ uniqueId: -1 }).maxTimeMS(10000);
+      const lastUser = await User.findOne().sort({ uniqueId: -1 }).maxTimeMS(20000).lean().exec();;
       console.log('Last user found:', lastUser);
       const uniqueId = lastUser
         ? (parseInt(lastUser.uniqueId) + 1).toString().padStart(4, "0")
@@ -42,7 +42,7 @@ const UserService = {
     try {
       console.log('Logging in user with data:', userData);
 
-      const user = await User.findOne({ email: userData.email }).maxTimeMS(10000);
+      const user = await User.findOne({ email: userData.email }).maxTimeMS(20000).lean().exec();;
       if (!user || !(await user.comparePassword(userData.password))) {
         throw new Error("Invalid credentials");
       }
@@ -61,7 +61,7 @@ const UserService = {
       const users = await User.find(
         { role: { $ne: 'admin' } },
         { password: 0 }
-      ).maxTimeMS(10000);
+      ).maxTimeMS(20000).lean().exec();;
 
       return users;
     } catch (error) {

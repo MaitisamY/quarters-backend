@@ -6,7 +6,7 @@ export const ReferralService = {
     try {
       console.log('Processing referral with data:', userData);
 
-      const existingEmail = await Referral.findOne({ referred_email: userData.referred_email }).maxTimeMS(10000);
+      const existingEmail = await Referral.findOne({ referred_email: userData.referred_email }).maxTimeMS(20000).lean().exec();;
       if (existingEmail) {
         throw new Error("This email has already been referred");
       }

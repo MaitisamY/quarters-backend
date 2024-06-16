@@ -33,7 +33,7 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-// Ensure indexes
+
 UserSchema.index({ email: 1 }, { unique: true });
 UserSchema.index({ uniqueId: 1 }, { unique: true });
 
