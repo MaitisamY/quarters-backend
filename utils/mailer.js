@@ -18,7 +18,7 @@ export const sendWelcomeEmail = (name, email, role, code) => {
   const { subject, html } = getEmailTemplate(name, role, code);
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
+    from: '"Quarters" <tamur@myquarters.ca>',
     to: email,
     subject,
     html,

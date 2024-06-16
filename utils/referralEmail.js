@@ -23,7 +23,7 @@ export const sendReferralEmail = (referrer, referredEmail, uniqueId) => {
   `;
 
   const mailOptions = {
-    from: '"Quarters" <tamu@myquarters.ca>',
+    from: '"Quarters" <tamur@myquarters.ca>',
     to: referredEmail,
     subject,
     html,
