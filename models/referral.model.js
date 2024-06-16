@@ -24,6 +24,9 @@ const ReferralSchema = new mongoose.Schema({
     },
 });
 
+// Ensure indexes
+ReferralSchema.index({ referred_email: 1 }, { unique: true });
+
 const Referral = mongoose.model("Referral", ReferralSchema);
 
 export default Referral;
