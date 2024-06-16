@@ -8,7 +8,10 @@ const client = new MongoClient(uri, {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-  }
+  },
+  tls: true,
+  tlsAllowInvalidCertificates: false, // Ensure this is set correctly
+  tlsAllowInvalidHostnames: false,
 });
 
 async function run() {
