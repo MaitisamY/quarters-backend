@@ -1,6 +1,6 @@
 import { MongoClient, ServerApiVersion } from 'mongodb';
 
-const uri = "mongodb+srv://root:quarters%40123456789@quarters.k9xvyvk.mongodb.net/";
+const uri = "mongodb+srv://root:quarters%40123456789@quarters.k9xvyvk.mongodb.net/?retryWrites=true&w=majority&appName=quarters";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -10,6 +10,8 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
   tls: true,
+  tlsAllowInvalidCertificates: false,
+  tlsAllowInvalidHostnames: false,
 });
 
 async function run() {
