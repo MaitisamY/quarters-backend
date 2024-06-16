@@ -3,7 +3,7 @@ import { sendReferralEmail } from "../utils/referralEmail.js";
 
 export const ReferralService = {
   referrals: async (userData) => {
-    const existingEmail = await Referral.findOne({ referred_email: userData.referred_email });
+    const existingEmail = await Referral.findOne({ referred_email: userData.referred_email }).maxTimeMS(10000);
     if (existingEmail) {
       throw new Error("This email has already been referred");
     }
