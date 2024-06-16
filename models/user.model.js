@@ -5,7 +5,6 @@ const UserSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
   },
   lastName: {
     type: String,
@@ -20,7 +19,6 @@ const UserSchema = new mongoose.Schema({
   phone: {
     type: String,
     required: true,
-    unique: true,
   },
   role: {
     type: String,

@@ -3,6 +3,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import passport from "passport";
 import userRoutes from "./routes/user.routes.js";
+import refferalRoutes from "./routes/refferal.routes.js";
 import "./config/db.js";
 import "./middleware/auth.middleware.js";
 
@@ -16,6 +17,7 @@ app.use(passport.initialize());
 
 // Routes
 app.use("/api/users", userRoutes);
+app.use("/api/new", refferalRoutes);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
