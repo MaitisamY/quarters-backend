@@ -10,8 +10,6 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   },
   tls: true,
-  tlsAllowInvalidCertificates: false, // Ensure this is set correctly
-  tlsAllowInvalidHostnames: false,
 });
 
 async function run() {
