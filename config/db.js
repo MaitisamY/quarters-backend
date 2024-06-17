@@ -6,9 +6,40 @@ dotenv.config();
 const uri = process.env.MONGO_URI;
 
 mongoose.connect(uri, {
-  serverSelectionTimeoutMS: 5000, // Timeout after 5s instead of 30s
+  serverSelectionTimeoutMS: 30000, /* Increasing timeout to handle network latency */
 }).then(() => {
   console.log('MongoDB connected');
+  initializeDatabase(); 
 }).catch((err) => {
   console.error('MongoDB connection error:', err);
 });
+
+mongoose.connection.on('error', (err) => {
+  console.error(`MongoDB connection error: ${err}`);
+});
+
+mongoose.connection.on('connected', () => {
+  console.log('Mongoose connected to DB');
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('Mongoose connection is disconnected');
+});
+
+async function initializeDatabase() {
+  const db = mongoose.connection.db;
+
+  // Check if 'users' collection exists
+  const collections = await db.listCollections({ name: 'users' }).toArray();
+  if (collections.length === 0) {
+    await db.createCollection('users');
+    console.log('Created "users" collection');
+  }
+
+  // Check if 'referrals' collection exists
+  const referralsCollections = await db.listCollections({ name: 'referrals' }).toArray();
+  if (referralsCollections.length === 0) {
+    await db.createCollection('referrals');
+    console.log('Created "referrals" collection');
+  }
+}
