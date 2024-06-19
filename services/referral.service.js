@@ -1,3 +1,4 @@
+import { getReferrals } from "../controllers/referral.controller.js";
 import Referral from "../models/referral.model.js";
 import { sendReferralEmail } from "../utils/referralEmail.js";
 
@@ -20,6 +21,17 @@ export const ReferralService = {
     } catch (error) {
       console.error("Error processing referral:", error);
       throw new Error("Referral processing failed");
+    }
+  },
+
+  getReferrals: async () => {
+    try {
+      console.log("Fetching referrals");
+      const referrals = await Referral.find();
+      return referrals;
+    } catch (error) {
+      console.error("Error fetching referrals:", error);
+      throw new Error("Failed to fetch referrals");
     }
   },
 };
