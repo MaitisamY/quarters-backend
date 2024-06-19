@@ -6,6 +6,7 @@ dotenv.config();
 const uri = process.env.MONGO_URI;
 
 mongoose.connect(uri, {
+  tls: true,
   serverSelectionTimeoutMS: 30000, /* Increasing timeout to handle network latency */
 }).then(() => {
   console.log('MongoDB connected');
