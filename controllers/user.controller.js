@@ -16,6 +16,16 @@ export const register = async (req, res) => {
   }
 };
 
+export const welcome = async (req, res) => {
+  try {
+    const { email } = req.body;
+    await UserService.sendWelcomeEmail(email);
+    res.status(200).json({ message: "Welcome email sent successfully" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
 export const login = async (req, res) => {
   try {
     const { user, token } = await UserService.login(req.body);
@@ -34,7 +44,7 @@ export const login = async (req, res) => {
 export const getUsers = async (req, res) => {
   try {
     const users = await UserService.getUsers();
-    res.status(200).json(users); // Ensure the response sends the users array
+    res.status(200).json(users); 
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

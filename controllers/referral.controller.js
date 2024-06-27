@@ -12,7 +12,7 @@ export const referrals = async (req, res) => {
 export const getReferrals = async (req, res) => {
   try {
     const referrals = await ReferralService.getReferrals();
-    res.status(200).json(referrals); // Ensure the response sends the referrals array
+    res.status(200).json(referrals); 
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
