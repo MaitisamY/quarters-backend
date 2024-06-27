@@ -5,13 +5,20 @@ import { getVerificationEmailTemplate, getWelcomeEmailTemplate } from "./emailTe
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+    tls: {
+      ciphers: 'SSLv3',
+      rejectUnauthorized: false,
+    },
+    requireTLS: true, // This ensures that STARTTLS is used if supported
+    logger: true, // Logs to console
+    debug: true, // Include SMTP traffic in the logs
 });
 
 export const sendVerificationEmail = (name, email, verificationCode) => {

@@ -11,6 +11,13 @@ const transporter = nodemailer.createTransport({
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    tls: {
+      ciphers: 'SSLv3',
+      rejectUnauthorized: false,
+    },
+    requireTLS: true, // This ensures that STARTTLS is used if supported
+    logger: true, // Logs to console
+    debug: true, // Include SMTP traffic in the logs
 });
 
 export const sendReferralEmail = (referrer, referredEmail, uniqueId) => {
