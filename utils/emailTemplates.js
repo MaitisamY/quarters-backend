@@ -68,7 +68,7 @@ export const getVerificationEmailTemplate = (name, verificationCode) => {
     };
 };
 
-export const getEmailTemplate = (name, role, code) => {
+export const getWelcomeEmailTemplate = (name, role, code) => {
     let subject;
     let html;
   
