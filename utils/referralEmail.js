@@ -116,7 +116,7 @@ export const sendReferralEmail = (referrer, referredEmail, uniqueId) => {
         <p>You have been referred by <strong>${referrer}</strong> to join Quarters.</p>
         <p>Your referral code is: <strong>${uniqueId}</strong></p>
         <p>Click the button below to sign up and start your journey with Quarters:</p>
-        <a class="link" href="https://myquarters.ca/" target="_blank">Sign Up</a>
+        <a class="custom-button" href="https://myquarters.ca/" target="_blank">Sign Up</a>
       </div>
     </body>
     </html>
