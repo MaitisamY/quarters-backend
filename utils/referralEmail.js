@@ -80,7 +80,7 @@ const emailStyles = `
             text-decoration: none;
             width: 100%;
             height: auto;
-            padding: 10px 15px;
+            padding: 10px 50px;
             margin: 20px 0 0 0;
             border-radius: 25px;
             background-color: #12b76a;
@@ -113,8 +113,8 @@ export const sendReferralEmail = (referrer, referredEmail, uniqueId) => {
       <div class="container">
         <img src="cid:logo" class="logo" alt="Quarters Logo">
         <p>Hi there,</p>
-        <p>You have been referred by <strong>${referrer}</strong> to join Quarters.</p>
-        <p>Your referral code is: <strong>${uniqueId}</strong></p>
+        <p>You have been referred by <strong>${referrer}</strong> to join Quarters. Use the referral code below while signing up.</p>
+        <h1><span class="code">${uniqueId}</span></h1>
         <p>Click the button below to sign up and start your journey with Quarters:</p>
         <a class="custom-button" href="https://myquarters.ca/" target="_blank">Sign Up</a>
       </div>
