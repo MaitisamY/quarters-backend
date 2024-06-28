@@ -32,6 +32,7 @@ const emailStyles = `
             color: #666;
             line-height: 1.5;
             margin: 20px 0;
+            text-align: left;
         }
         .code {
             font-family: monospace;
@@ -42,12 +43,15 @@ const emailStyles = `
             padding: 10px 20px;
             border-radius: 5px;
             margin: 20px 0;
+            text-align: center;
+            width: fit-content;
         }
         .footer {
             font-size: 18px;
             color: #000000;
             font-weight: bold;
             margin-top: 20px;
+            text-align: left;
         }
     </style>
 `;
