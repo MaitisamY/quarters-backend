@@ -28,8 +28,8 @@ const emailStyles = `
             margin-bottom: 20px;
         }
         p {
-            font-size: 18px;
-            color: #666;
+            font-size: 16px;
+            color: #000;
             line-height: 1.5;
             margin: 20px 0;
             text-align: left;
@@ -50,7 +50,7 @@ const emailStyles = `
             font-size: 18px;
             color: #000000;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 25px;
             text-align: left;
         }
     </style>
@@ -73,9 +73,9 @@ export const getVerificationEmailTemplate = (name, verificationCode) => {
             <div class="container">
                 <img src="cid:logo" class="logo" alt="Quarters Logo">
                 <p>Hi ${name},</p>
+                <p>Thank you for signing up to Quarters.</p>
                 <p>Your verification code is:</p>
-                <p class="code">${verificationCode}</p>
-                <p>Use this code to complete your registration.</p>
+                <h1><span class="code">${verificationCode}</span></h1>
             </div>
             </body>
             </html>
@@ -114,7 +114,8 @@ export const getWelcomeEmailTemplate = (name, role) => {
                   <p>Cashback Rewards: Earn cashback for on-time payments, early payments, shopping with our partner brands, and more! Your Quarters Piggy Bank will help you save for your future home or next lease.</p>
                   <p>Exclusive Perks: Engage in our weekly interactive activities and refer friends to earn even more rewards.</p>
                   <p>We can't wait to help you make the most out of renting. Stay tuned for more updates and get ready to experience a new era of renting with Quarters!</p>
-                  <div class="footer">Best regards,<br>The Quarters Team</div>
+                  <p>Best regards,</p>
+                  <div class="footer">The Quarters Team</div>
               </div>
           </body>
           </html>
@@ -145,7 +146,8 @@ export const getWelcomeEmailTemplate = (name, role) => {
                   <p>Tenant Replacement Services: Quickly fill vacant units and maintain steady rental income with our efficient tenant replacement service.</p>
                   <p>Marketing Support: Enhance your property's visibility and attract more tenants by being part of the Quarters Club.</p>
                   <p>We're here to help you maximize your rental income and streamline your property management. Stay tuned for our launch and get ready to transform your rental experience with Quarters!</p>
-                  <div class="footer">Best regards,<br>The Quarters Team</div>
+                  <p>Best regards,</p>
+                  <div class="footer">The Quarters Team</div>
               </div>
           </body>
           </html>
@@ -176,7 +178,8 @@ export const getWelcomeEmailTemplate = (name, role) => {
                   <p>Applicant Dashboard: Manage all your screenings and client interactions efficiently with our user-friendly dashboard.</p>
                   <p>Flexible Payment Options: Choose to pay for screenings yourself or charge applicants directly, making the process seamless.</p>
                   <p>We're here to help you unlock global potential and take your business to the next level. Stay tuned for our launch and get ready to experience a smarter way of doing business with Quarters!</p>
-                  <div class="footer">Best regards,<br>The Quarters Team</div>
+                  <p>Best regards,</p>
+                  <div class="footer">The Quarters Team</div>
               </div>
           </body>
           </html>
