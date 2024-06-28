@@ -81,7 +81,7 @@ export const getVerificationEmailTemplate = (name, verificationCode) => {
     };
 };
 
-export const getWelcomeEmailTemplate = (name, role, code) => {
+export const getWelcomeEmailTemplate = (name, role) => {
     let subject;
     let html;
   
@@ -216,7 +216,7 @@ export const getWelcomeEmailTemplate = (name, role, code) => {
         break;
       default:
         subject = "Welcome to Our Service!";
-        html = `<h1>Welcome!</h1><p>Thank you for registering with our service. Your verification code is: <strong>${code}</strong></p>`;
+        html = `<h1>Welcome!</h1><p>Thank you for registering with our service.</p>`;
         break;
     }
   
