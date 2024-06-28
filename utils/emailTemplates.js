@@ -73,8 +73,7 @@ export const getVerificationEmailTemplate = (name, verificationCode) => {
             <div class="container">
                 <img src="cid:logo" class="logo" alt="Quarters Logo">
                 <p>Hi ${name},</p>
-                <p>Thank you for signing up to Quarters.</p>
-                <p>Your verification code is:</p>
+                <p>Thank you for signing up to Quarters. Use the code below to verify your email.</p>
                 <h1><span class="code">${verificationCode}</span></h1>
             </div>
             </body>
