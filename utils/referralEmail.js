@@ -28,6 +28,9 @@ export const sendReferralEmail = (referrer, referredEmail, uniqueId) => {
   const html = `
     <div 
         style="
+            font-family: Arial, sans-serif;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -41,14 +44,14 @@ export const sendReferralEmail = (referrer, referredEmail, uniqueId) => {
         "
     >
     <h1>Welcome to Quarters!</h1>
-    <p>You have been referred by ${referrer} to join Quarters.</p>
+    <p>You have been referred by <strong>${referrer}</strong> to join Quarters.</p>
     <p>Your referral code is: <strong>${uniqueId}</strong></p>
     <p>Click <a href="https://quarters.com/signup">here</a> to sign up!</p>
     </div>
   `;
 
   const mailOptions = {
-    from: 'Quarters - <no-reply@myquarters.ca>',
+    from: 'Quarters <hello@myquarters.ca>',
     to: referredEmail,
     subject,
     html,

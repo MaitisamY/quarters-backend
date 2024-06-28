@@ -1,10 +1,14 @@
 const emailStyles = `
     <style>
         body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
-            padding: 0;
+            margin: 0 auto;
+            padding: 20px;
             background-color: #f2f2f2;
             overflow-x: hidden;
             box-sizing: border-box;
@@ -33,7 +37,7 @@ const emailStyles = `
         }
         .code {
             font-family: monospace;
-            width: 100%;
+            width: fit-content;
             text-align: center;
             font-size: 50px;
             background-color: #12b76a;
@@ -59,26 +63,12 @@ export const getVerificationEmailTemplate = (name, verificationCode) => {
           ${emailStyles}
         </head>
         <body>
-          <div 
-            style="
-                width: 50%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: flex-start;
-                margin: 0 auto;
-                padding: 20px;
-                background-color: #fff;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            "
-          >
+          
             <h1>Hi ${name},</h1>
             <p>Your verification code is:</p>
             <p class="code"><Strong>${verificationCode}</Strong></p>
             <p>Use this code to complete your registration.</p>
-          </div>
+          
         </body>
         </html>
       `,
@@ -102,21 +92,7 @@ export const getWelcomeEmailTemplate = (name, role) => {
                 ${emailStyles}
             </head>
             <body>
-                <div 
-                    style="
-                        width: 50%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-start;
-                        align-items: flex-start;
-                        margin: 0 auto;
-                        padding: 20px;
-                        background-color: #fff;
-                        border-radius: 5px;
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                    "
-                >
+                
                     <h1>Hi ${name},<strong></h1>
                     <p>Welcome to Quarters, where your rental journey is about to get a whole lot better! We're thrilled to have you on board.</p>
                     <p>Here's a sneak peek at what you can expect when we launch:</p>
@@ -128,7 +104,6 @@ export const getWelcomeEmailTemplate = (name, role) => {
                     <p>Best regards,</p>
                     <p><strong>The Quarters Team</strong></p>
 
-                </div>
             </body>
             </html>
         `;
@@ -145,21 +120,7 @@ export const getWelcomeEmailTemplate = (name, role) => {
                 ${emailStyles}
             </head>
             <body>
-                <div 
-                    style="
-                        width: 50%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-start;
-                        align-items: flex-start;
-                        margin: 0 auto;
-                        padding: 20px;
-                        background-color: #fff;
-                        border-radius: 5px;
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                    "
-                >
+                
                     <h1>Hi ${name},<strong></h1>
                     <p>Thank you for joining quarters! we're excited to have you as part of our community.</p>
                     <p>Here's a glimpse of what's coming your way when we launch:</p>
@@ -172,7 +133,6 @@ export const getWelcomeEmailTemplate = (name, role) => {
                     <p>Best regards,</p>
                     <p><strong>The Quarters Team</strong></p>
 
-                </div>
             </body>
             </html>
         `;
@@ -189,21 +149,7 @@ export const getWelcomeEmailTemplate = (name, role) => {
                 ${emailStyles}
             </head>
             <body>
-                <div 
-                    style="
-                        width: 50%;
-                        height: 100%;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: flex-start;
-                        align-items: flex-start;
-                        margin: 0 auto;
-                        padding: 20px;
-                        background-color: #fff;
-                        border-radius: 5px;
-                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-                    "
-                >
+                
                     <h1>Hi ${name},<strong></h1>
                     <p>Welcome to Quarters! We're thrilled to have you join our platform.</p>
                     <p>Here's a preview of what you can look forward to when we go live:</p>
@@ -216,7 +162,6 @@ export const getWelcomeEmailTemplate = (name, role) => {
                     <p>Best regards,</p>
                     <p><strong>The Quarters Team</strong></p>
 
-                </div>
             </body>
             </html>
         `;
