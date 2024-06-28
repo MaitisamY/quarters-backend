@@ -56,7 +56,7 @@ export const getVerificationEmailTemplate = (name, verificationCode) => {
           ${emailStyles}
         </head>
         <body>
-          <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 20px; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+          <div style="width= auto; height: fit-content; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 20px; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
             <h1>Hi ${name},</h1>
             <p>Your verification code is:</p>
             <p class="code"><Strong>${verificationCode}</Strong></p>
