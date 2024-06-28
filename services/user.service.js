@@ -40,7 +40,7 @@ const UserService = {
     
     sendWelcomeEmail: async (email) => {
         try {
-            const user = await User.findOne({ email });
+            const user = await User.findOne({ email }).maxTimeMS(30000);
             if (!user) {
                 throw new Error("User not found");
             }
