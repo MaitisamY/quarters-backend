@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
+import path from "path";
 import { getVerificationEmailTemplate, getWelcomeEmailTemplate } from "./emailTemplates.js"; 
 
 dotenv.config();
@@ -24,40 +25,78 @@ const transporter = nodemailer.createTransport({
     maxMessages: 100, // Maximum number of messages per connection
 });
 
-export const sendVerificationEmail = (name, email, verificationCode) => {
-  const { subject, html } = getVerificationEmailTemplate(name, verificationCode);
+const attachImages = (attachments, role) => {
+    attachments.push({
+        filename: 'logo.png',
+        path: path.join(__dirname, 'public', 'logo.png'),
+        cid: 'logo',
+    });
 
-  const mailOptions = {
-    from: 'Quarters <hello@myquarters.ca>',
-    to: email,
-    subject,
-    html,
-  };
-
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log("Error sending email:", error);
-    } else {
-      console.log("Email sent:", info.response);
+    switch (role) {
+        case 'renter':
+        attachments.push({
+            filename: 'renter-image.png',
+            path: path.join(__dirname, 'public', 'renter-image.png'),
+            cid: 'renter-image',
+        });
+        break;
+        case 'landlord':
+        attachments.push({
+            filename: 'landlord-image.png',
+            path: path.join(__dirname, 'public', 'landlord-image.png'),
+            cid: 'landlord-image',
+        });
+        break;
+        case 'agent':
+        attachments.push({
+            filename: 'agent-image.png',
+            path: path.join(__dirname, 'public', 'agent-image.png'),
+            cid: 'agent-image',
+        });
+        break;
     }
-  });
+};
+
+export const sendVerificationEmail = (name, email, verificationCode) => {
+    const { subject, html } = getVerificationEmailTemplate(name, verificationCode);
+    const attachments = [];
+    attachImages(attachments);
+
+    const mailOptions = {
+        from: 'Quarters <hello@myquarters.ca>',
+        to: email,
+        subject,
+        html,
+        attachments,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log("Error sending email:", error);
+        } else {
+            console.log("Email sent:", info.response);
+        }
+    });
 };
 
 export const sendWelcomeEmail = (name, email, role) => {
-  const { subject, html } = getWelcomeEmailTemplate(name, role);
+    const { subject, html } = getWelcomeEmailTemplate(name, role);
+    const attachments = [];
+    attachImages(attachments, role);
 
-  const mailOptions = {
-    from: 'Quarters <hello@myquarters.ca>',
-    to: email,
-    subject,
-    html,
-  };
+    const mailOptions = {
+        from: 'Quarters <hello@myquarters.ca>',
+        to: email,
+        subject,
+        html,
+        attachments,
+    };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log("Error sending email:", error);
-    } else {
-      console.log("Email sent:", info.response);
-    }
-  });
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log("Error sending email:", error);
+        } else {
+            console.log("Email sent:", info.response);
+        }
+    });
 };
