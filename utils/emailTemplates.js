@@ -32,9 +32,12 @@ const emailStyles = `
             margin: 10px 0;
         }
         .code {
+            font-family: monospace;
+            width: 100%;
+            text-align: center;
             font-size: 50px;
+            background-color: #12b76a;
             color: #fff;
-            background-color: #333;
             font-weight: bold;
             padding: 10px 20px;
             border-radius: 5px;
@@ -56,7 +59,21 @@ export const getVerificationEmailTemplate = (name, verificationCode) => {
           ${emailStyles}
         </head>
         <body>
-          <div style="width= auto; height: fit-content; display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 20px; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #fff; border-radius: 5px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+          <div 
+            style="
+                width: 50%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            "
+          >
             <h1>Hi ${name},</h1>
             <p>Your verification code is:</p>
             <p class="code"><Strong>${verificationCode}</Strong></p>
@@ -87,11 +104,12 @@ export const getWelcomeEmailTemplate = (name, role) => {
             <body>
                 <div 
                     style="
+                        width: 50%;
+                        height: 100%;
                         display: flex;
                         flex-direction: column;
-                        align-items: center;
                         justify-content: flex-start;
-                        max-width: 600px;
+                        align-items: flex-start;
                         margin: 0 auto;
                         padding: 20px;
                         background-color: #fff;
@@ -129,11 +147,12 @@ export const getWelcomeEmailTemplate = (name, role) => {
             <body>
                 <div 
                     style="
+                        width: 50%;
+                        height: 100%;
                         display: flex;
                         flex-direction: column;
-                        align-items: center;
                         justify-content: flex-start;
-                        max-width: 600px;
+                        align-items: flex-start;
                         margin: 0 auto;
                         padding: 20px;
                         background-color: #fff;
@@ -172,11 +191,12 @@ export const getWelcomeEmailTemplate = (name, role) => {
             <body>
                 <div 
                     style="
+                        width: 50%;
+                        height: 100%;
                         display: flex;
                         flex-direction: column;
-                        align-items: center;
                         justify-content: flex-start;
-                        max-width: 600px;
+                        align-items: flex-start;
                         margin: 0 auto;
                         padding: 20px;
                         background-color: #fff;
