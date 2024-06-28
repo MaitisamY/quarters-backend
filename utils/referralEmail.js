@@ -18,15 +18,33 @@ const transporter = nodemailer.createTransport({
     requireTLS: true, // This ensures that STARTTLS is used if supported
     logger: true, // Logs to console
     debug: true, // Include SMTP traffic in the logs
+    pool: true, // Enable pooled connections
+    maxConnections: 5, // Maximum number of connections in the pool
+    maxMessages: 100, // Maximum number of messages per connection
 });
 
 export const sendReferralEmail = (referrer, referredEmail, uniqueId) => {
   const subject = "You've been referred to Quarters!";
   const html = `
+    <div 
+        style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        "
+    >
     <h1>Welcome to Quarters!</h1>
     <p>You have been referred by ${referrer} to join Quarters.</p>
     <p>Your referral code is: <strong>${uniqueId}</strong></p>
     <p>Click <a href="https://quarters.com/signup">here</a> to sign up!</p>
+    </div>
   `;
 
   const mailOptions = {

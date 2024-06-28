@@ -32,7 +32,7 @@ const emailStyles = `
             margin: 10px 0;
         }
         .code {
-            font-size: 24px;
+            font-size: 50px;
             color: #fff;
             background-color: #333;
             font-weight: bold;
@@ -56,7 +56,20 @@ export const getVerificationEmailTemplate = (name, verificationCode) => {
           ${emailStyles}
         </head>
         <body>
-          <div class="container">
+          <div 
+            style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            "
+          >
             <h1>Hi ${name},</h1>
             <p>Your verification code is:</p>
             <p class="code"><Strong>${verificationCode}</Strong></p>
@@ -85,7 +98,20 @@ export const getWelcomeEmailTemplate = (name, role, code) => {
                 ${emailStyles}
             </head>
             <body>
-                <div class="container">
+                <div 
+                    style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: flex-start;
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        background-color: #fff;
+                        border-radius: 5px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    "
+                >
                     <h1>Hi ${name},<strong></h1>
                     <p>Welcome to Quarters, where your rental journey is about to get a whole lot better! We're thrilled to have you on board.</p>
                     <p>Here's a sneak peek at what you can expect when we launch:</p>
@@ -114,7 +140,20 @@ export const getWelcomeEmailTemplate = (name, role, code) => {
                 ${emailStyles}
             </head>
             <body>
-                <div class="container">
+                <div 
+                    style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: flex-start;
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        background-color: #fff;
+                        border-radius: 5px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    "
+                >
                     <h1>Hi ${name},<strong></h1>
                     <p>Thank you for joining quarters! we're excited to have you as part of our community.</p>
                     <p>Here's a glimpse of what's coming your way when we launch:</p>
@@ -144,7 +183,20 @@ export const getWelcomeEmailTemplate = (name, role, code) => {
                 ${emailStyles}
             </head>
             <body>
-                <div class="container">
+                <div 
+                    style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: flex-start;
+                        max-width: 600px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        background-color: #fff;
+                        border-radius: 5px;
+                        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                    "
+                >
                     <h1>Hi ${name},<strong></h1>
                     <p>Welcome to Quarters! We're thrilled to have you join our platform.</p>
                     <p>Here's a preview of what you can look forward to when we go live:</p>

@@ -19,6 +19,9 @@ const transporter = nodemailer.createTransport({
     requireTLS: true, // This ensures that STARTTLS is used if supported
     logger: true, // Logs to console
     debug: true, // Include SMTP traffic in the logs
+    pool: true, // Enable pooled connections
+    maxConnections: 5, // Maximum number of connections in the pool
+    maxMessages: 100, // Maximum number of messages per connection
 });
 
 export const sendVerificationEmail = (name, email, verificationCode) => {
