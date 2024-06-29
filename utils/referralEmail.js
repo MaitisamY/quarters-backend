@@ -5,28 +5,31 @@ import { fileURLToPath } from 'url';
 
 dotenv.config();
 
+/* Get absolute path to public folder */
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+/* Prepare email transporter */
 const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
-    secure: false, // true for 465, false for other ports
+    secure: false, /* true for 465, false for other ports */
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
     },
     tls: {
-      ciphers: 'SSLv3',
-      rejectUnauthorized: false,
+        ciphers: 'SSLv3',
+        rejectUnauthorized: false,
     },
-    requireTLS: true, // This ensures that STARTTLS is used if supported
-    logger: true, // Logs to console
-    debug: true, // Include SMTP traffic in the logs
-    pool: true, // Enable pooled connections
-    maxConnections: 5, // Maximum number of connections in the pool
-    maxMessages: 100, // Maximum number of messages per connection
+    requireTLS: true,
+    logger: true,
+    debug: true, 
+    pool: true, /* Enable pooled connections - Won't close the connection until maxConnections is reached */
+    maxConnections: 5, 
+    maxMessages: 100, 
 });
 
+/* Email styles */
 const emailStyles = `
     <style>
         body {
@@ -99,48 +102,48 @@ const emailStyles = `
 `;
 
 export const sendReferralEmail = (referrer, referredEmail, uniqueId) => {
-  const subject = "You've been referred to Quarters!";
-  const html = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>${subject}</title>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      ${emailStyles}
-    </head>
-    <body>
-      <div class="container">
-        <img src="cid:logo" class="logo" alt="Quarters Logo">
-        <p>Hi there,</p>
-        <p>You have been referred by <strong>${referrer}</strong> to join Quarters. Use the referral code below while signing up.</p>
-        <h1><span class="code">${uniqueId}</span></h1>
-        <p>Click the button below to sign up and start your journey with Quarters:</p>
-        <a class="custom-button" href="https://myquarters.ca/" target="_blank">Sign Up</a>
-      </div>
-    </body>
-    </html>
-  `;
+    const subject = "You've been referred to Quarters!";
+    const html = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <title>${subject}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        ${emailStyles}
+        </head>
+        <body>
+        <div class="container">
+            <img src="cid:logo" class="logo" alt="Quarters Logo">
+            <p>Hi there,</p>
+            <p>You have been referred by <strong>${referrer}</strong> to join Quarters. Use the referral code below while signing up.</p>
+            <h1><span class="code">${uniqueId}</span></h1>
+            <p>Click the button below to sign up and start your journey with Quarters:</p>
+            <a class="custom-button" href="https://myquarters.ca/" target="_blank">Sign Up</a>
+        </div>
+        </body>
+        </html>
+    `;
 
-  const attachments = [{
-    filename: 'logo.png',
-    path: path.join(__dirname, '../public', 'logo.png'),
-    cid: 'logo',
-  }];
+    const attachments = [{
+        filename: 'logo.png',
+        path: path.join(__dirname, '../public', 'logo.png'),  /* Ensure this path is correct */
+        cid: 'logo',
+    }];
 
-  const mailOptions = {
-    from: 'Quarters <hello@myquarters.ca>',
-    to: referredEmail,
-    subject,
-    html,
-    attachments,
-  };
+    const mailOptions = {
+        from: 'Quarters <hello@myquarters.ca>', /* Ensure this email is correct - won't work otherwise */
+        to: referredEmail,
+        subject,
+        html,
+        attachments,
+    };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log("Error sending email:", error);
-    } else {
-      console.log("Email sent:", info.response);
-    }
-  });
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log("Error sending email:", error);
+        } else {
+            console.log("Email sent:", info.response);
+        }
+    });
 };

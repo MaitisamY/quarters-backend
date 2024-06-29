@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 
+/* Referral schema */
 const ReferralSchema = new mongoose.Schema({
     referrer: {
         type: String,
@@ -24,8 +25,10 @@ const ReferralSchema = new mongoose.Schema({
     },
 });
 
+/* Generate unique referral code */
 ReferralSchema.index({ referred_email: 1 }, { unique: true });
 
+/* Create Referral model */
 const Referral = mongoose.model("Referral", ReferralSchema);
 
 export default Referral;

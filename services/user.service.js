@@ -3,7 +3,10 @@ import { generateToken } from "../utils/jwt.utils.js";
 import { sendVerificationEmail, sendWelcomeEmail } from "../utils/mailer.js";
 import { generateVerificationCode } from "../utils/codeGenerator.js"; 
 
+/* User service methods */
 const UserService = {
+
+    // Register user
     register: async (userData) => {
         try {
             console.log('Registering user with data:', userData);
@@ -38,6 +41,7 @@ const UserService = {
         }
     },
     
+    // Send welcome email
     sendWelcomeEmail: async (email) => {
         try {
             const user = await User.findOne({ email }).maxTimeMS(30000);
@@ -51,6 +55,7 @@ const UserService = {
         }
     },
 
+    // Login user
     login: async (userData) => {
         try {
             console.log('Logging in user with data:', userData);
@@ -67,6 +72,7 @@ const UserService = {
         }
     },
 
+    // Get all users
     getUsers: async () => {
         try {
             console.log('Fetching users');
