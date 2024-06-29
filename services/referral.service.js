@@ -6,7 +6,7 @@ import { sendReferralEmail } from "../utils/referralEmail.js";
 export const ReferralService = {
     referrals: async (userData) => {
         try {
-            console.log('Processing referral with data:', userData);
+            // console.log('Processing referral with data:', userData); <--- Uncomment to debug
 
             // Check if the referred email is already registered
             const existingUser = await User.findOne({ email: userData.referred_email }).maxTimeMS(30000);
