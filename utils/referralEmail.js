@@ -42,7 +42,7 @@ const emailStyles = `
             box-sizing: border-box;
         }
         .container {
-            max-width: 500px;
+            max-width: 400px;
             margin: 0 auto;
             padding: 20px;
             background-color: #fff;
@@ -53,6 +53,11 @@ const emailStyles = `
         .logo {
             width: 100px;
             margin-bottom: 20px;
+        }
+        h1 {
+            width: 100%;
+            text-align: center;
+            font-size: 32px;
         }
         p {
             font-size: 16px;
@@ -66,7 +71,6 @@ const emailStyles = `
             font-optical-sizing: auto;
             font-weight: 400;
             font-style: normal;
-            font-size: 25px;
             background-color: #12b76a;
             color: #fff;
             font-weight: bold;
