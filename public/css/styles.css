@@ -1,0 +1,123 @@
+@font-face {
+    font-family: "Jakarta Sans";
+    src: url("../fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+* {
+    font-family: "Jakarta Sans", sans-serif;
+    box-sizing: border-box;
+    word-spacing: 0.1rem;
+    letter-spacing: 0.1rem;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 30px 0 30px 0;
+    margin: 0;
+    overflow: hidden;
+    background: linear-gradient(
+        45deg,
+        #afe8ffa4,
+        #ffc3a0a6,
+        #b4fdb19f,
+        #cfebfea2,
+        #f8ea9baf,
+        #ffdabcb2
+    );
+    background-size: 300% 300%;
+    animation: gradient 30s ease infinite;
+}
+
+h1 {
+    margin: 0;
+    font-size: 3.4rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #222222;
+    width: 50%;
+    text-align: center;
+}
+
+h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #222222;
+}
+
+p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #131313;
+    width: 25%;
+    text-align: center;
+}
+
+.text-danger {
+    color: red;
+}
+
+a {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    text-align: left;
+    text-decoration: none;
+    color: rgba(59, 87, 211, 1);
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgba(59, 87, 211, 1);
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+  

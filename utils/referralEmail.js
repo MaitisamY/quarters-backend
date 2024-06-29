@@ -127,7 +127,7 @@ export const sendReferralEmail = (referrer, referredEmail, uniqueId) => {
 
     const attachments = [{
         filename: 'logo.png',
-        path: path.join(__dirname, '../public', 'logo.png'),  /* Ensure this path is correct */
+        path: path.join(__dirname, '../public/img', 'logo.png'),  /* Ensure this path is correct */
         cid: 'logo',
     }];
 

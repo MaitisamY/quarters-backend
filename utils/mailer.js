@@ -37,7 +37,7 @@ const transporter = nodemailer.createTransport({
 const attachImages = (attachments, role) => {
     attachments.push({
         filename: 'logo.png',
-        path: path.join(__dirname, '../public', 'logo.png'),  /* Ensure this path is correct */
+        path: path.join(__dirname, '../public/img', 'logo.png'),  /* Ensure this path is correct */
         cid: 'logo',
     });
 
@@ -45,21 +45,21 @@ const attachImages = (attachments, role) => {
         case 'renter':
         attachments.push({
             filename: 'renter-image.png',
-            path: path.join(__dirname, '../public', 'renter-image.png'),  /* Ensure this path is correct */
+            path: path.join(__dirname, '../public/img', 'renter-image.png'),  /* Ensure this path is correct */
             cid: 'renter-image',
         });
         break;
         case 'landlord':
         attachments.push({
             filename: 'landlord-image.png',
-            path: path.join(__dirname, '../public', 'landlord-image.png'),  /* Ensure this path is correct */
+            path: path.join(__dirname, '../public/img', 'landlord-image.png'),  /* Ensure this path is correct */
             cid: 'landlord-image',
         });
         break;
         case 'agent':
         attachments.push({
             filename: 'agent-image.png',
-            path: path.join(__dirname, '../public', 'agent-image.png'),  /* Ensure this path is correct */
+            path: path.join(__dirname, '../public/img', 'agent-image.png'),  /* Ensure this path is correct */
             cid: 'agent-image',
         });
         break;
