@@ -9,52 +9,43 @@ import { generateVerificationCode } from "../utils/codeGenerator.js";
 const UserService = {
     // Register user
     register: async (userData) => {
-        const session = await mongoose.startSession();
-        session.startTransaction();
         try {
-            // console.log('Registering user with data:', userData); <--- Uncomment to debug
+            console.log('Registering user with data:', userData);
 
-            // Run independent queries in parallel
-            const [existingUser, lastUser, referral] = await Promise.all([
-                User.findOne({ email: userData.email }).session(session).maxTimeMS(30000),
-                User.findOne().sort({ uniqueId: -1 }).session(session).maxTimeMS(30000),
-                userData.referral_code ? Referral.findOne({ referral_code: userData.referral_code }).session(session).maxTimeMS(30000) : Promise.resolve(null)
-            ]);
-
+            const existingUser = await User.findOne({ email: userData.email }).maxTimeMS(30000); 
             if (existingUser) {
                 throw new Error("Email already in use");
             }
 
+            const lastUser = await User.findOne().sort({ uniqueId: -1 }).maxTimeMS(30000); 
+            console.log('Last user found:', lastUser);
             const uniqueId = lastUser
                 ? (parseInt(lastUser.uniqueId) + 1).toString().padStart(4, "0")
                 : "1001";
 
-            let referrer;
-            if (referral) {
-                referrer = await User.findOne({ email: referral.referrer_email }).session(session).maxTimeMS(30000);
+            // Check if referral code is provided and valid
+            if (userData.referral_code) {
+                const referral = await Referral.findOne({ referral_code: userData.referral_code }).maxTimeMS(30000);
+                if (referral) {
+                    const referrer = await User.findOne({ email: referral.referrer_email }).maxTimeMS(30000);
+                    if (referrer) {
+                        referrer.referrals += 1;
+                        await referrer.save();
+                    }
+                }
             }
 
             const verificationCode = generateVerificationCode();
-            // console.log('Generated verification code:', verificationCode); <--- Uncomment to debug
+            console.log('Generated verification code:', verificationCode);
 
             const user = new User({ ...userData, uniqueId });
-            await user.save({ session });
-
-            if (referrer) {
-                referrer.referrals += 1;
-                await referrer.save({ session });
-            }
-
-            await session.commitTransaction();
-            session.endSession();
-
+            await user.save();
             const token = generateToken(user);
+
             sendVerificationEmail(user.name, user.email, verificationCode);
 
             return { user, token, verificationCode };
         } catch (error) {
-            await session.abortTransaction();
-            session.endSession();
             console.error("Error during registration:", error);
             if (error.code === 11000) {
                 throw new Error("Duplicate key error: " + JSON.stringify(error.keyValue));
