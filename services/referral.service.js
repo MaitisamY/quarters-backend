@@ -14,10 +14,10 @@ export const ReferralService = {
                 throw new Error("This email is already registered");
             }
 
-            // Check if the referred email is already in the referrals
-            const existingEmail = await Referral.findOne({ referred_email: userData.referred_email }).maxTimeMS(30000);
-            if (existingEmail) {
-                throw new Error("This email has already been referred");
+            // Check if the current user has already referred this email
+            const existingReferral = await Referral.findOne({ referrer_email: userData.referrer_email, referred_email: userData.referred_email }).maxTimeMS(30000);
+            if (existingReferral) {
+                throw new Error("You have already referred this email");
             }
 
             // Save the referral
@@ -56,6 +56,9 @@ export const ReferralService = {
                         referrals: 1, 
                         referral_count: 1 
                     }
+                },
+                {
+                    $sort: { $natural: 1 } 
                 }
             ]);
 
