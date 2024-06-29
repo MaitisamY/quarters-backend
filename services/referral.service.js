@@ -58,7 +58,7 @@ export const ReferralService = {
                     }
                 },
                 {
-                    $sort: { $natural: 1 } 
+                    $sort: { "referrals.createdAt": 1 } 
                 }
             ]);
 
