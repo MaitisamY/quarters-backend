@@ -90,7 +90,6 @@ const emailStyles = `
         .custom-button {
             text-decoration: none;
             width: 100%;
-            display: block;
             height: auto;
             padding: 10px 50px;
             margin: 20px 0 0 0;
