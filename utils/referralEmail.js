@@ -32,6 +32,7 @@ const transporter = nodemailer.createTransport({
 /* Email styles */
 const emailStyles = `
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Sans+Mono:ital,wght@0,400..700;1,400..700&display=swap');
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -61,8 +62,11 @@ const emailStyles = `
             text-align: left;
         }
         .code {
-            font-family: monospace;
-            font-size: 50px;
+            font-family: "Ubuntu Sans Mono", monospace;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 25px;
             background-color: #12b76a;
             color: #fff;
             font-weight: bold;
@@ -82,6 +86,7 @@ const emailStyles = `
         .custom-button {
             text-decoration: none;
             width: 100%;
+            display: block;
             height: auto;
             padding: 10px 50px;
             margin: 20px 0 0 0;
