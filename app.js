@@ -23,7 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/api/users", userRoutes);
-app.use("/api/new", refferalRoutes);
+app.use("/api/referrals", refferalRoutes);
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
