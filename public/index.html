@@ -12,15 +12,32 @@
 </head>
 
 <body>
-    <div class="container">
-        <h2>Welcome To</h2>
-        <h1><img src="./img/logo.png" alt="Quarters Logo"></h1>
-        <p>
-            Our API is live! And running... Visit our official 
-            <a href="https://myquarters.ca" target="_blank">website</a> or 
-            <a href="https://quarters-frontend-nh9pg.ondigitalocean.app/signup" target="_blank">signup</a> 
-        </p>
+    <header>
+        <img class="site-logo" src="./img/logo.png" alt="logo" />
+    </header>
+    <div class="outer-app-container">
+        <div class="outer-app-box">
+            <div class="outer-app-box-body">
+                <h1>Hey there!</h1>
+                <p>
+                    Our API is live! And running... 
+                </p>
+                <p>
+                    Visit our official 
+                    <a class="link" href="https://myquarters.ca" target="_blank">website</a> or 
+                    <a class="link" href="https://quarters-frontend-nh9pg.ondigitalocean.app/signup" target="_blank">signup</a> 
+                </p>
+            </div>
+        </div>
+        <footer>
+            <p id="copyright"></p>
+            <p>help@quarters.com</p>
+        </footer>
     </div>
+    <script>
+        const thisYear = new Date().getFullYear();
+        document.querySelector('#copyright').innerHTML = `© quarters ${thisYear}`
+    </script>
 </body>
 
 </html>
